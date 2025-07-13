@@ -3,6 +3,7 @@
 *.log
 *.tmp
 /target/
+/reports/
 *.class
 *.jar
 *.war
