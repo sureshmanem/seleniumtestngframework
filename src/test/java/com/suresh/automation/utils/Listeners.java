@@ -13,6 +13,7 @@ import org.testng.ITestResult;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class Listeners implements ITestListener {
 
@@ -31,19 +32,9 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        if (ExtentManager.getTest() == null) {
-            ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-            ExtentManager.setTest(test);
-        }
-        
+        ensureTestInitialized(result);
         ExtentManager.getTest().fail(result.getThrowable());
-        WebDriver driver = null;
-        try {
-            driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        WebDriver driver = getDriverFromTestResult(result);
         if (driver != null) {
             String screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
             ExtentManager.getTest().addScreenCaptureFromBase64String(screenshot, result.getMethod().getMethodName());
@@ -52,24 +43,36 @@ public class Listeners implements ITestListener {
     
     @Override
     public void onTestSkipped(ITestResult result) {
-        if (ExtentManager.getTest() == null) {
-            ExtentTest test = extent.createTest(result.getMethod().getMethodName());
-            ExtentManager.setTest(test);
-        }
+        ensureTestInitialized(result);
         ExtentManager.getTest().log(Status.SKIP, "Test Skipped: " + result.getThrowable().getMessage());
     }
 
     @Override
     public void onFinish(ITestContext context) {
         extent.flush();
-        // Automatically open the report after execution
         try {
-            File reportFile = new File(System.getProperty("user.dir") + "/reports/index.html");
+            File reportFile = Paths.get(System.getProperty("user.dir"), "reports", "index.html").toFile();
             if (reportFile.exists()) {
                 Desktop.getDesktop().browse(reportFile.toURI());
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void ensureTestInitialized(ITestResult result) {
+        if (ExtentManager.getTest() == null) {
+            ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+            ExtentManager.setTest(test);
+        }
+    }
+
+    private WebDriver getDriverFromTestResult(ITestResult result) {
+        try {
+            return (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

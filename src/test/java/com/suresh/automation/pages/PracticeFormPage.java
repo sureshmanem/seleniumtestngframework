@@ -9,11 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
-public class PracticeFormPage {
+public class PracticeFormPage extends BasePage {
 
-    private WebDriver driver;
-
-    // Locators
     private By firstNameInput = By.name("firstname");
     private By lastNameInput = By.name("lastname");
     private By genderRadio = By.name("sex");
@@ -25,16 +22,16 @@ public class PracticeFormPage {
     private By submitButton = By.id("submit");
 
     public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void enterFirstName(String firstName) {
-        driver.findElement(firstNameInput).sendKeys(firstName);
+        sendKeys(firstNameInput, firstName);
         ExtentManager.getTest().log(Status.INFO, "Entered First Name: " + firstName);
     }
 
     public void enterLastName(String lastName) {
-        driver.findElement(lastNameInput).sendKeys(lastName);
+        sendKeys(lastNameInput, lastName);
         ExtentManager.getTest().log(Status.INFO, "Entered Last Name: " + lastName);
     }
 
@@ -59,27 +56,29 @@ public class PracticeFormPage {
     }
 
     public void selectContinent(String continent) {
-        Select dropdown = new Select(driver.findElement(continentsDropdown));
+        WebElement dropdownElement = waitForVisibilityOfElement(continentsDropdown);
+        Select dropdown = new Select(dropdownElement);
         dropdown.selectByVisibleText(continent);
         ExtentManager.getTest().log(Status.INFO, "Selected Continent: " + continent);
     }
     
     public void selectSeleniumCommand(String command) {
-        Select dropdown = new Select(driver.findElement(seleniumCommandsDropdown));
+        WebElement dropdownElement = waitForVisibilityOfElement(seleniumCommandsDropdown);
+        Select dropdown = new Select(dropdownElement);
         dropdown.selectByVisibleText(command);
         ExtentManager.getTest().log(Status.INFO, "Selected Selenium Command: " + command);
     }
 
     public void clickSubmit() {
-        driver.findElement(submitButton).click();
+        click(submitButton);
         ExtentManager.getTest().log(Status.INFO, "Clicked Submit button");
     }
     
     private void selectRadioOrCheckbox(By locator, String value) {
-        List<WebElement> options = driver.findElements(locator);
+        List<WebElement> options = waitForPresenceOfAllElements(locator);
         for (WebElement option : options) {
             if (option.getAttribute("value").equalsIgnoreCase(value)) {
-                option.click();
+                jsClick(option);
                 break;
             }
         }

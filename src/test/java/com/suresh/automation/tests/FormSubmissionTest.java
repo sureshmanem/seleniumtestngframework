@@ -9,6 +9,7 @@ import com.suresh.automation.utils.ExtentManager;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,6 @@ public class FormSubmissionTest extends BaseTest {
     public void submitFormTest(Map<String, String> testData) {
         PracticeFormPage formPage = new PracticeFormPage(driver);
         
-        // Log the test data for the current iteration
         ExtentManager.getTest().log(Status.INFO, "Test Data for this run: " + testData.toString());
         
         formPage.enterFirstName(testData.get("FirstName"));
@@ -29,14 +29,11 @@ public class FormSubmissionTest extends BaseTest {
         formPage.selectAutomationTool(testData.get("AutomationTool"));
         formPage.selectContinent(testData.get("Continent"));
         formPage.selectSeleniumCommand(testData.get("SeleniumCommands"));
-        // formPage.clickSubmit(); // Uncomment to actually submit the form
-        
-        // Add assertions here to verify successful submission
     }
 
     @DataProvider(name = "formData")
     public Object[][] getFormData() throws IOException {
-        String filePath = System.getProperty("user.dir") + "/testdata/testdata.xlsx";
+        String filePath = Paths.get(System.getProperty("user.dir"), "testdata", "testdata.xlsx").toString();
         List<Map<String, String>> testDataList = ExcelUtil.getTestData(filePath, "FormData");
         
         Object[][] data = new Object[testDataList.size()][1];
@@ -46,4 +43,3 @@ public class FormSubmissionTest extends BaseTest {
         return data;
     }
 }
-

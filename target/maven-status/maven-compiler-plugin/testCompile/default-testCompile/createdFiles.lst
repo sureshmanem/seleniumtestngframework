@@ -5,3 +5,4 @@ com/suresh/automation/utils/ExtentReporterNG.class
 com/suresh/automation/utils/Listeners.class
 com/suresh/automation/utils/ExtentManager.class
 com/suresh/automation/pages/PracticeFormPage.class
+com/suresh/automation/pages/BasePage.class

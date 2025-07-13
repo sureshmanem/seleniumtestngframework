@@ -3,6 +3,7 @@ package com.suresh.automation.utils;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import java.nio.file.Paths;
 
 public class ExtentManager {
 
@@ -10,7 +11,7 @@ public class ExtentManager {
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     public static synchronized ExtentReports createInstance() {
-        String path = System.getProperty("user.dir") + "/reports/index.html";
+        String path = Paths.get(System.getProperty("user.dir"), "reports", "index.html").toString();
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Web Automation Test Results");
         reporter.config().setDocumentTitle("Test Automation Report");

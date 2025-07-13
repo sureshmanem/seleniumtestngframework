@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -19,26 +20,33 @@ public class BaseTest {
 
     public WebDriver initializeDriver() throws IOException {
         prop = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/config.properties");
+        String configPath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "config.properties").toString();
+        FileInputStream fis = new FileInputStream(configPath);
         prop.load(fis);
 
         String browserName = prop.getProperty("browser").toLowerCase().trim();
 
-        if (browserName.startsWith("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            if (browserName.equalsIgnoreCase("chrome-headless")) {
+        switch (browserName) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "chrome-headless":
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
-                options.addArguments("--window-size=1920,1080"); // Set a window size for headless mode
-            }
-            driver = new ChromeDriver(options);
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+                options.addArguments("--window-size=1920,1080");
+                driver = new ChromeDriver(options);
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Browser not supported: " + browserName);
         }
         
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        // Maximizing the window is not applicable for headless mode, so we check first
         if (!browserName.equalsIgnoreCase("chrome-headless")) {
             driver.manage().window().maximize();
         }
