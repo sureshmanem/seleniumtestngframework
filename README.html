@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium TestNG Framework Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals (Slate background, Sky accent) -->
+    <!-- Application Structure Plan: Single-page scrolling design with sticky nav. Converts static README sections into interactive components: Features as cards, Architecture as a hover-able flowchart, Workflow as a vertical stepper, and Project Structure as a file tree. This design enhances exploration and understanding over a linear document. -->
+    <!-- Visualization & Content Choices: Architecture ASCII -> Goal: Organize -> Viz: Interactive HTML/CSS Diagram -> Interaction: Hover to show details -> Justification: Makes complex relationships explorable. Workflow List -> Goal: Process -> Viz: Vertical Stepper -> Interaction: None -> Justification: Guides user through the process sequentially. Structure Tree -> Goal: Organize -> Viz: Styled Nested List -> Interaction: None -> Justification: Visually intuitive representation of file hierarchy. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .architecture-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .architecture-node:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .connector {
+            position: absolute;
+            background-color: #cbd5e1; /* slate-300 */
+            z-index: -1;
+        }
+        
+        .file-tree ul {
+            padding-left: 1.5rem;
+            border-left: 1px solid #e2e8f0; /* slate-200 */
+        }
+        
+        .file-tree li {
+            position: relative;
+            padding-left: 1.25rem;
+        }
+        
+        .file-tree li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 0.75rem;
+            height: 1px;
+            background-color: #e2e8f0; /* slate-200 */
+        }
+    </style>
+</head>
+
+<body class="text-slate-700">
+
+    <!-- Header & Navigation -->
+    <header class="sticky-nav bg-white/80 backdrop-blur-lg shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-2xl font-bold text-slate-800">Test Automation Framework</h1>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="font-medium text-slate-600 hover:text-sky-600 transition">Features</a>
+                    <a href="#architecture" class="font-medium text-slate-600 hover:text-sky-600 transition">Architecture</a>
+                    <a href="#workflow" class="font-medium text-slate-600 hover:text-sky-600 transition">Workflow</a>
+                    <a href="#setup" class="font-medium text-slate-600 hover:text-sky-600 transition">Setup Guide</a>
+                    <a href="#structure" class="font-medium text-slate-600 hover:text-sky-600 transition">Structure</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+
+        <!-- Features Section -->
+        <section id="features" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Core Features</h2>
+            <p class="text-center max-w-2xl mx-auto text-slate-600 mb-12">A robust and scalable framework designed with industry best practices for reliable and maintainable automated tests.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Page Object Model (POM)</h3>
+                    <p>Separates UI interaction logic from test logic for better code organization and maintainability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Data-Driven Testing</h3>
+                    <p>Reads test data from Excel files, allowing for easy expansion of test cases without code changes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Configuration Management</h3>
+                    <p>Manages environment details like URLs and browser types via an external properties file.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Detailed HTML Reporting</h3>
+                    <p>Generates rich Extent Reports with test steps, data, and screenshots on failure.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Cross-Browser Support</h3>
+                    <p>Easily configurable to run tests on different browsers like Chrome, Firefox, and in headless mode.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-2">Maven Integration</h3>
+                    <p>Uses Maven for streamlined dependency management and build lifecycle control.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Architecture Section -->
+        <section id="architecture" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Interactive Architecture</h2>
+            <p class="text-center max-w-2xl mx-auto text-slate-600 mb-12">Hover over any component to see its role in the framework. The architecture is designed for modularity and clear separation of concerns.</p>
+            <div class="lg:flex lg:space-x-8">
+                <div class="flex-grow bg-white p-8 rounded-lg shadow-lg relative">
+                    <!-- Nodes -->
+                    <div id="node-maven" class="architecture-node bg-sky-100 text-sky-800 p-3 rounded-lg text-center w-48 mx-auto mb-16" data-key="maven">Maven (Build Tool)</div>
+                    <div id="node-testng" class="architecture-node bg-sky-100 text-sky-800 p-3 rounded-lg text-center w-48 mx-auto mb-16" data-key="testng">TestNG (Test Runner)</div>
+                    <div class="flex justify-around mb-16">
+                        <div id="node-listeners" class="architecture-node bg-indigo-100 text-indigo-800 p-3 rounded-lg text-center w-48" data-key="listeners">Listeners.java</div>
+                        <div id="node-extentmanager" class="architecture-node bg-indigo-100 text-indigo-800 p-3 rounded-lg text-center w-48" data-key="extentmanager">ExtentManager.java</div>
+                    </div>
+                    <div class="flex justify-around mb-16">
+                         <div id="node-basetest" class="architecture-node bg-teal-100 text-teal-800 p-3 rounded-lg text-center w-48" data-key="basetest">BaseTest.java</div>
+                        <div id="node-config" class="architecture-node bg-teal-100 text-teal-800 p-3 rounded-lg text-center w-48" data-key="config">config.properties</div>
+                    </div>
+                     <div id="node-formtest" class="architecture-node bg-amber-100 text-amber-800 p-3 rounded-lg text-center w-48 mx-auto mb-16" data-key="formtest">FormSubmissionTest.java</div>
+                     <div class="flex justify-around mb-16">
+                         <div id="node-dataprovider" class="architecture-node bg-rose-100 text-rose-800 p-3 rounded-lg text-center w-48" data-key="dataprovider">@DataProvider</div>
+                        <div id="node-excelutil" class="architecture-node bg-rose-100 text-rose-800 p-3 rounded-lg text-center w-48" data-key="excelutil">ExcelUtil.java</div>
+                    </div>
+                     <div class="flex justify-around">
+                         <div id="node-pageobject" class="architecture-node bg-lime-100 text-lime-800 p-3 rounded-lg text-center w-48" data-key="pageobject">PracticeFormPage.java</div>
+                        <div id="node-basepage" class="architecture-node bg-lime-100 text-lime-800 p-3 rounded-lg text-center w-48" data-key="basepage">BasePage.java</div>
+                    </div>
+                </div>
+                <div class="lg:w-1/3 mt-8 lg:mt-0">
+                    <div id="architecture-details" class="sticky top-24 bg-sky-50 p-6 rounded-lg shadow-inner min-h-[200px]">
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Component Details</h3>
+                        <p class="text-slate-600">Hover over a component on the left to learn more.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Execution Workflow</h2>
+            <p class="text-center max-w-2xl mx-auto text-slate-600 mb-12">Follow the step-by-step process from test initiation to report generation.</p>
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 -ml-px h-full w-0.5 bg-slate-300"></div>
+                <div class="space-y-12">
+                    <div class="relative">
+                        <div class="md:flex md:items-center">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">1. Execution Start</h3>
+                                    <p>A user or CI/CD pipeline runs the `mvn clean test` command.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex md:items-center md:flex-row-reverse">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">2. TestNG Suite</h3>
+                                    <p>Maven invokes TestNG, which reads `testng.xml` to identify the test suite and attach listeners.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="md:flex md:items-center">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">3. Browser Setup</h3>
+                                    <p>`BaseTest` reads `config.properties`, initializes the correct WebDriver, and navigates to the URL.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex md:items-center md:flex-row-reverse">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">4. Data Provision</h3>
+                                    <p>`@DataProvider` uses `ExcelUtil` to read data from `testdata.xlsx` and feeds it to the test method.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex md:items-center">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">5. Page Interaction</h3>
+                                    <p>The test uses Page Object methods to perform actions. Each step is logged to the Extent Report.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="md:flex md:items-center md:flex-row-reverse">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h3 class="font-semibold text-lg text-sky-700 mb-2">6. Reporting & Teardown</h3>
+                                    <p>The listener logs the final status. On failure, a screenshot is taken. Finally, the browser is closed.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 top-1/2 -mt-2.5 h-5 w-5 rounded-full bg-sky-600 border-4 border-white"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setup Guide Section -->
+        <section id="setup" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">Setup and Execution Guide</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-sky-700 mb-4">Prerequisites</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Java Development Kit (JDK) 8 or higher</li>
+                        <li>Apache Maven</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                     <h3 class="font-semibold text-lg text-sky-700 mb-4">Configuration</h3>
+                    <p>Open `src/main/resources/config.properties` to set the `browser` (`chrome`, `chrome-headless`, `firefox`) and `url` for testing.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+                     <h3 class="font-semibold text-lg text-sky-700 mb-4">Running Tests</h3>
+                    <p class="mb-4">Navigate to the project's root directory in your terminal and execute the following command:</p>
+                    <div class="bg-slate-800 text-white p-4 rounded-lg flex items-center justify-between">
+                        <pre><code id="maven-command">mvn clean test</code></pre>
+                        <button id="copy-button" class="bg-slate-600 hover:bg-slate-500 text-sm text-white font-semibold py-1 px-3 rounded-md transition">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Structure Section -->
+        <section id="structure" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Project Structure</h2>
+            <p class="text-center max-w-2xl mx-auto text-slate-600 mb-12">The framework is organized into logical packages for scalability and easy navigation.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-xl mx-auto file-tree">
+                <ul class="space-y-2">
+                    <li><span class="font-semibold">📁 SeleniumTestNGFramework/</span>
+                        <ul>
+                            <li><span>📁 src/</span>
+                                <ul>
+                                    <li><span>📁 main/</span>
+                                         <ul>
+                                            <li><span>📁 resources/</span>
+                                                <ul><li><span>📄 config.properties</span></li></ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><span>📁 test/</span>
+                                        <ul>
+                                            <li><span>📁 com/mycompany/automation/</span>
+                                                <ul>
+                                                    <li><span>📁 base/</span>
+                                                         <ul><li><span>📄 BaseTest.java</span></li></ul>
+                                                    </li>
+                                                    <li><span>📁 pages/</span>
+                                                         <ul>
+                                                            <li><span>📄 BasePage.java</span></li>
+                                                            <li><span>📄 PracticeFormPage.java</span></li>
+                                                         </ul>
+                                                    </li>
+                                                    <li><span>📁 tests/</span>
+                                                        <ul><li><span>📄 FormSubmissionTest.java</span></li></ul>
+                                                    </li>
+                                                    <li><span>📁 utils/</span>
+                                                        <ul>
+                                                            <li><span>📄 ExcelUtil.java</span></li>
+                                                            <li><span>📄 ExtentManager.java</span></li>
+                                                            <li><span>📄 Listeners.java</span></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>📁 testdata/</span>
+                                <ul><li><span>📄 testdata.xlsx</span></li></ul>
+                            </li>
+                            <li><span>📄 pom.xml</span></li>
+                            <li><span>📄 testng.xml</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-slate-500">
+            <p>&copy; 2025 Test Automation Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Architecture Diagram Interactivity
+            const componentDetails = {
+                maven: { title: 'Maven', description: 'The build automation tool used to manage project dependencies, compilation, and the testing lifecycle. It executes the tests via the Surefire plugin.' },
+                testng: { title: 'TestNG', description: 'The core testing framework that manages the test suite execution, assertions, and test lifecycle using annotations like @Test, @BeforeMethod, etc.' },
+                listeners: { title: 'Listeners.java', description: 'Implements TestNG\'s ITestListener interface to react to test events like start, pass, and fail. It is responsible for triggering logging and screenshots.' },
+                extentmanager: { title: 'ExtentManager.java', description: 'A utility class that initializes and manages the ExtentReports instance, ensuring a single, thread-safe report is generated for the entire test suite.' },
+                basetest: { title: 'BaseTest.java', description: 'A foundational class that all test classes inherit from. It handles the setup (@BeforeMethod) and teardown (@AfterMethod) of the WebDriver for each test.' },
+                config: { title: 'config.properties', description: 'An external configuration file to store environment-specific data like the application URL and the target browser, keeping it separate from the code.' },
+                formtest: { title: 'FormSubmissionTest.java', description: 'An example test class containing the actual test methods (@Test) that define the steps for a specific test case.' },
+                dataprovider: { title: '@DataProvider', description: 'A TestNG annotation that supplies data to a test method. This implementation reads from an Excel file to run the same test with multiple data sets.' },
+                excelutil: { title: 'ExcelUtil.java', description: 'A helper utility to read data from Microsoft Excel (.xlsx) files, converting rows and columns into a format usable by the @DataProvider.' },
+                pageobject: { title: 'PracticeFormPage.java', description: 'A Page Object class that encapsulates the web elements and interaction methods for a specific page (the practice form), promoting code reuse.' },
+                basepage: { title: 'BasePage.java', description: 'A base class for all page objects. It contains reusable, stable methods for common web interactions, such as clicking and sending keys, often with explicit waits.' }
+            };
+
+            const detailBox = document.getElementById('architecture-details');
+            const nodes = document.querySelectorAll('.architecture-node');
+
+            nodes.forEach(node => {
+                node.addEventListener('mouseover', () => {
+                    const key = node.dataset.key;
+                    const details = componentDetails[key];
+                    if (details) {
+                        detailBox.innerHTML = `
+                            <h3 class="font-semibold text-lg text-slate-800 mb-2">${details.title}</h3>
+                            <p class="text-slate-600">${details.description}</p>
+                        `;
+                    }
+                });
+
+                node.addEventListener('mouseout', () => {
+                     detailBox.innerHTML = `
+                        <h3 class="font-semibold text-lg text-slate-800 mb-2">Component Details</h3>
+                        <p class="text-slate-600">Hover over a component on the left to learn more.</p>
+                    `;
+                });
+            });
+
+            // Copy button for Maven command
+            const copyButton = document.getElementById('copy-button');
+            const commandText = document.getElementById('maven-command').innerText;
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(commandText).then(() => {
+                    copyButton.innerText = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.innerText = 'Copy';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
