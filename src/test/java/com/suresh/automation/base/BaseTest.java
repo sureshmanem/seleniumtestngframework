@@ -3,38 +3,51 @@ package com.suresh.automation.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
 
 public class BaseTest {
 
-    // Declare the WebDriver instance to be accessible by child test classes
     public WebDriver driver;
+    public Properties prop;
 
-    /**
-     * This method, annotated with @BeforeMethod, will run before each
-     * test method in any inheriting test class.
-     */
-    @BeforeMethod
-    public void setUp() {
-        // WebDriverManager automatically downloads the latest chromedriver
-        // and sets the system property for Selenium to use it.
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize(); // Maximize the browser window for consistency
+    public WebDriver initializeDriver() throws IOException {
+        prop = new Properties();
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/config.properties");
+        prop.load(fis);
+
+        String browserName = prop.getProperty("browser");
+
+        if (browserName.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browserName.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        }
+        
+        // Updated implicit wait using Duration
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        return driver;
     }
 
-    /**
-     * This method, annotated with @AfterMethod, will run after each
-     * test method, ensuring the browser is closed even if the test fails.
-     */
-    @AfterMethod
+    @BeforeMethod(alwaysRun = true)
+    public void setUp() throws IOException {
+        driver = initializeDriver();
+        driver.get(prop.getProperty("url"));
+    }
+
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        // A null check ensures we don't get a NullPointerException
-        // if the driver failed to initialize.
         if (driver != null) {
-            driver.quit(); // .quit() closes all browser windows and ends the session.
+            driver.quit();
         }
     }
 }

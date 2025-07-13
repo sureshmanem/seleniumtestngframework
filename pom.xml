@@ -1,63 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.mycompany.automation</groupId>
+  <groupId>com.suresh.automation</groupId>
   <artifactId>SeleniumTestNGFramework</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>SeleniumTestNGFramework</name>
   <url>http://maven.apache.org</url>
 
-  <!-- Properties to manage versions consistently -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
-  <!-- All external libraries (dependencies) are declared here -->
   <dependencies>
-    <!-- Selenium Java Bindings: The core library for browser automation -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>4.21.0</version>
     </dependency>
-
-    <!-- TestNG: The testing framework for organizing and running tests -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.10.2</version>
-      <scope>test</scope> <!-- 'test' scope means this is only needed for compiling/running tests -->
+      <scope>test</scope>
     </dependency>
-
-    <!-- WebDriverManager: Automates the management of browser drivers (e.g., chromedriver) -->
     <dependency>
         <groupId>io.github.bonigarcia</groupId>
         <artifactId>webdrivermanager</artifactId>
         <version>5.8.0</version>
         <scope>test</scope>
     </dependency>
-
-    <!-- Extent Reports: For generating beautiful HTML reports -->
     <dependency>
         <groupId>com.aventstack</groupId>
         <artifactId>extentreports</artifactId>
         <version>5.1.1</version>
     </dependency>
+    <!-- For reading .xlsx files -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>5.2.3</version>
+    </dependency>
+    <!-- For reading .xls files -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>5.2.3</version>
+    </dependency>
   </dependencies>
 
-  <!-- Build configuration, including plugins -->
   <build>
     <plugins>
-        <!-- Maven Surefire Plugin: Responsible for running the tests -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.2.5</version>
             <configuration>
-                <!-- Tells Surefire to use our testng.xml file to find and run tests -->
                 <suiteXmlFiles>
                     <suiteXmlFile>testng.xml</suiteXmlFile>
                 </suiteXmlFiles>

@@ -1,4 +1,6 @@
+com/suresh/automation/tests/FormSubmissionTest.class
 com/suresh/automation/utils/Listeners.class
+com/suresh/automation/pages/PracticeFormPage.class
+com/suresh/automation/utils/ExcelUtil.class
 com/suresh/automation/base/BaseTest.class
-com/suresh/automation/tests/SampleTest.class
 com/suresh/automation/utils/ExtentReporterNG.class

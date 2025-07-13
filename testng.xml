@@ -1,14 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="MyTestSuite" verbose="1">
-  <!-- This tells TestNG to use our custom listener for all tests in this suite -->
+<suite name="Techlistic Form Test Suite" verbose="1">
   <listeners>
     <listener class-name="com.suresh.automation.utils.Listeners"/>
   </listeners>
 
-  <test name="SampleFunctionalTests">
+  <test name="Form Submission Tests">
     <classes>
-      <class name="com.suresh.automation.tests.SampleTest"/>
+      <class name="com.suresh.automation.tests.FormSubmissionTest"/>
     </classes>
   </test>
 </suite>

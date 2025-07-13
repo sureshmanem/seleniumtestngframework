@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,8 +38,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-MyTestSuite" class="navigator-link">
-              <span class="suite-name border-passed">MyTestSuite</span>
+            <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" class="navigator-link">
+              <span class="suite-name border-failed">Techlistic Form Test Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,37 +49,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="test-xml-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="testlist-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="group-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="times-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="reporter-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="ignored-methods-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-MyTestSuite" class="navigator-link ">
+                  <a href="#" panel-name="chronological-Techlistic_Form_Test_Suite" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -92,21 +92,40 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" class="hide-methods failed suite-Techlistic_Form_Test_Suite"> (hide)</a> <!-- hide-methods failed suite-Techlistic_Form_Test_Suite -->
+                      <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" class="show-methods failed suite-Techlistic_Form_Test_Suite"> (show)</a> <!-- show-methods failed suite-Techlistic_Form_Test_Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Techlistic_Form_Test_Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" title="com.suresh.automation.tests.FormSubmissionTest" class="method navigator-link" hash-for-method="submitFormTest({FirstName=})">submitFormTest({FirstName=})</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Techlistic_Form_Test_Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
                     <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-MyTestSuite" class="hide-methods passed suite-MyTestSuite"> (hide)</a> <!-- hide-methods passed suite-MyTestSuite -->
-                      <a href="#" panel-name="suite-MyTestSuite" class="show-methods passed suite-MyTestSuite"> (show)</a> <!-- show-methods passed suite-MyTestSuite -->
+                      <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" class="hide-methods passed suite-Techlistic_Form_Test_Suite"> (hide)</a> <!-- hide-methods passed suite-Techlistic_Form_Test_Suite -->
+                      <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" class="show-methods passed suite-Techlistic_Form_Test_Suite"> (show)</a> <!-- show-methods passed suite-Techlistic_Form_Test_Suite -->
                     </span>
-                    <div class="method-list-content passed suite-MyTestSuite">
+                    <div class="method-list-content passed suite-Techlistic_Form_Test_Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-MyTestSuite" title="com.suresh.automation.tests.SampleTest" class="method navigator-link" hash-for-method="verifySureshManemitle">verifySureshManemitle</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" title="com.suresh.automation.tests.FormSubmissionTest" class="method navigator-link" hash-for-method="submitFormTest({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, Fi...)">submitFormTest({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, Fi...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-MyTestSuite -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Techlistic_Form_Test_Suite" title="com.suresh.automation.tests.FormSubmissionTest" class="method navigator-link" hash-for-method="submitFormTest({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=...)">submitFormTest({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Techlistic_Form_Test_Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,26 +136,56 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-MyTestSuite" class="panel MyTestSuite">
-          <div class="suite-MyTestSuite-class-passed">
+        <div panel-name="suite-Techlistic_Form_Test_Suite" class="panel Techlistic_Form_Test_Suite">
+          <div class="suite-Techlistic_Form_Test_Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.suresh.automation.tests.SampleTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.suresh.automation.tests.FormSubmissionTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifySureshManemitle">
-                  </a> <!-- verifySureshManemitle -->
-                  <span class="method-name">verifySureshManemitle</span>
-                  <em>
-(Verify the title of the Suresh Manem homepage)                  </em>
+                  <a name="submitFormTest({FirstName=})">
+                  </a> <!-- submitFormTest({FirstName=}) -->
+                  <span class="method-name">submitFormTest</span>
+                  <span class="parameters">({FirstName=})</span>
+                  <div class="stack-trace">java.lang.IllegalArgumentException: Keys to send should be a not null CharSequence
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:96)
+	at com.suresh.automation.pages.PracticeFormPage.enterLastName(PracticeFormPage.java:35)
+	at com.suresh.automation.tests.FormSubmissionTest.submitFormTest(FormSubmissionTest.java:20)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-MyTestSuite-class-passed -->
-        </div> <!-- panel MyTestSuite -->
-        <div panel-name="test-xml-MyTestSuite" class="panel">
+          </div> <!-- suite-Techlistic_Form_Test_Suite-class-failed -->
+          <div class="suite-Techlistic_Form_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.suresh.automation.tests.FormSubmissionTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="submitFormTest({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, Fi...)">
+                  </a> <!-- submitFormTest({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, Fi...) -->
+                  <span class="method-name">submitFormTest</span>
+                  <span class="parameters">({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, FirstName=John, LastName=Doe, Gender=Male, AutomationTool=TestNG})</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="submitFormTest({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=...)">
+                  </a> <!-- submitFormTest({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=...) -->
+                  <span class="method-name">submitFormTest</span>
+                  <span class="parameters">({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=Jane, LastName=Smith, Gender=Female, AutomationTool=QTP})</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Techlistic_Form_Test_Suite-class-passed -->
+        </div> <!-- panel Techlistic_Form_Test_Suite -->
+        <div panel-name="test-xml-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">/Users/lallu/Downloads/Repositories/Work/seleniumtestngframework/testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
@@ -144,99 +193,133 @@
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;MyTestSuite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+&lt;suite name=&quot;Techlistic Form Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;com.suresh.automation.utils.Listeners&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;SampleFunctionalTests&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Form Submission Tests&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.suresh.automation.tests.SampleTest&quot;/&gt;
+      &lt;class name=&quot;com.suresh.automation.tests.FormSubmissionTest&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- SampleFunctionalTests --&gt;
-&lt;/suite&gt; &lt;!-- MyTestSuite --&gt;
+  &lt;/test&gt; &lt;!-- Form Submission Tests --&gt;
+&lt;/suite&gt; &lt;!-- Techlistic Form Test Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-MyTestSuite" class="panel">
+        <div panel-name="testlist-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for MyTestSuite</span>
+            <span class="header-content">Tests for Techlistic Form Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">SampleFunctionalTests (1 class)</span>
+                <span class="test-name">Form Submission Tests (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-MyTestSuite" class="panel">
+        <div panel-name="group-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for MyTestSuite</span>
+            <span class="header-content">Groups for Techlistic Form Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-MyTestSuite" class="panel">
+        <div panel-name="times-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for MyTestSuite</span>
+            <span class="header-content">Times for Techlistic Form Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_MyTestSuite');
-function tableData_MyTestSuite() {
+suiteTableInitFunctions.push('tableData_Techlistic_Form_Test_Suite');
+function tableData_Techlistic_Form_Test_Suite() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(3);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifySureshManemitle')
-data.setCell(0, 2, 'com.suresh.automation.tests.SampleTest')
-data.setCell(0, 3, 1564);
-window.suiteTableData['MyTestSuite']= { tableData: data, tableDiv: 'times-div-MyTestSuite'}
+data.setCell(0, 1, 'submitFormTest')
+data.setCell(0, 2, 'com.suresh.automation.tests.FormSubmissionTest')
+data.setCell(0, 3, 441);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'submitFormTest')
+data.setCell(1, 2, 'com.suresh.automation.tests.FormSubmissionTest')
+data.setCell(1, 3, 392);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'submitFormTest')
+data.setCell(2, 2, 'com.suresh.automation.tests.FormSubmissionTest')
+data.setCell(2, 3, 52);
+window.suiteTableData['Techlistic_Form_Test_Suite']= { tableData: data, tableDiv: 'times-div-Techlistic_Form_Test_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 seconds</span>
-              <div id="times-div-MyTestSuite">
-              </div> <!-- times-div-MyTestSuite -->
+              <span class="suite-total-time">Total running time: 885 ms</span>
+              <div id="times-div-Techlistic_Form_Test_Suite">
+              </div> <!-- times-div-Techlistic_Form_Test_Suite -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-MyTestSuite" class="panel">
+        <div panel-name="reporter-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for MyTestSuite</span>
+            <span class="header-content">Reporter output for Techlistic Form Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-MyTestSuite" class="panel">
+        <div panel-name="ignored-methods-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-MyTestSuite" class="panel">
+        <div panel-name="chronological-Techlistic_Form_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.suresh.automation.tests.SampleTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.suresh.automation.tests.FormSubmissionTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifySureshManemitle</span>
-                <span class="method-start">1481 ms</span>
+                <span class="method-name">submitFormTest({Experience=5, Profession=Automation, Continent=North America, SeleniumCommands=Browser Commands, Fi...)</span>
+                <span class="method-start">83941 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">3047 ms</span>
+                <span class="method-start">84336 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">84480 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">submitFormTest({Experience=7, Profession=Manual, Continent=Europe, SeleniumCommands=Navigation Commands, FirstName=...)</span>
+                <span class="method-start">167111 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">167552 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">167699 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">submitFormTest({FirstName=})</span>
+                <span class="method-start">250329 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">250393 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
