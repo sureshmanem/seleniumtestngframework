@@ -1,8 +1,8 @@
 // src/test/java/com/mycompany/automation/base/BaseTest.java
 package com.suresh.automation.base;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -22,19 +22,27 @@ public class BaseTest {
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/config.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
+        String browserName = prop.getProperty("browser").toLowerCase().trim();
 
-        if (browserName.equalsIgnoreCase("chrome")) {
+        if (browserName.startsWith("chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            if (browserName.equalsIgnoreCase("chrome-headless")) {
+                options.addArguments("--headless");
+                options.addArguments("--window-size=1920,1080"); // Set a window size for headless mode
+            }
+            driver = new ChromeDriver(options);
         } else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
         
-        // Updated implicit wait using Duration
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        // Maximizing the window is not applicable for headless mode, so we check first
+        if (!browserName.equalsIgnoreCase("chrome-headless")) {
+            driver.manage().window().maximize();
+        }
+        
         return driver;
     }
 

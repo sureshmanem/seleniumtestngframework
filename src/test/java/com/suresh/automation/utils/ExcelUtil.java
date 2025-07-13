@@ -1,6 +1,5 @@
 // src/test/java/com/mycompany/automation/utils/ExcelUtil.java
 package com.suresh.automation.utils;
-
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -25,21 +24,25 @@ public class ExcelUtil {
         
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
             Row currentRow = sheet.getRow(i);
-            // Add a null check for the current row to skip empty rows
+            // Skip processing if the row is physically null in the file
             if (currentRow == null) {
-                continue; // Skip to the next iteration if the row is empty
+                continue;
             }
+            
             Map<String, String> rowMap = new HashMap<>();
             for (int j = 0; j < headerRow.getLastCellNum(); j++) {
                 String key = headerRow.getCell(j).getStringCellValue();
-                // Also check if the cell itself is not null
                 if (currentRow.getCell(j) != null) {
-                    String value = formatter.formatCellValue(currentRow.getCell(j));
+                    // Use DataFormatter and trim the result to handle various cell types and whitespace
+                    String value = formatter.formatCellValue(currentRow.getCell(j)).trim();
                     rowMap.put(key, value);
                 }
             }
-            // Only add the map if it's not empty, to avoid adding empty rows
-            if (!rowMap.isEmpty()) {
+            
+            // **THE FIX**: Only add the row to our test data list if it contains actual data.
+            // We verify this by checking a mandatory column like 'FirstName'.
+            // This prevents rows that are empty or only contain whitespace from becoming a test case.
+            if (rowMap.containsKey("FirstName") && rowMap.get("FirstName") != null && !rowMap.get("FirstName").isEmpty()) {
                testDataList.add(rowMap);
             }
         }

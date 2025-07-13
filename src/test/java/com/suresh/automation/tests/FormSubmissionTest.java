@@ -1,9 +1,11 @@
 // src/test/java/com/mycompany/automation/tests/FormSubmissionTest.java
 package com.suresh.automation.tests;
 
+import com.aventstack.extentreports.Status;
 import com.suresh.automation.base.BaseTest;
 import com.suresh.automation.pages.PracticeFormPage;
 import com.suresh.automation.utils.ExcelUtil;
+import com.suresh.automation.utils.ExtentManager;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.io.IOException;
@@ -15,6 +17,9 @@ public class FormSubmissionTest extends BaseTest {
     @Test(dataProvider = "formData")
     public void submitFormTest(Map<String, String> testData) {
         PracticeFormPage formPage = new PracticeFormPage(driver);
+        
+        // Log the test data for the current iteration
+        ExtentManager.getTest().log(Status.INFO, "Test Data for this run: " + testData.toString());
         
         formPage.enterFirstName(testData.get("FirstName"));
         formPage.enterLastName(testData.get("LastName"));
@@ -41,3 +46,4 @@ public class FormSubmissionTest extends BaseTest {
         return data;
     }
 }
+
